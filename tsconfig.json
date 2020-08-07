@@ -56,7 +56,7 @@
         "emitDecoratorMetadata": true             /* Enables experimental support for emitting type metadata for decorators. */
     },
     "include": [
-        "src/**/*.ts", "types/exceljs/TypedExcel.ts"
+        "src/**/*.ts", "types/exceljs/TypedExcel.ts", "src/02_array-minimizer/index.ts.nots"
     ],
     "exclude": [
         "node_modules",
