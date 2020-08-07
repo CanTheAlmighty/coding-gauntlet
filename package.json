@@ -1,0 +1,20 @@
+{
+    "name": "coding-gauntlet",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "repository": "git@github.com:CanTheAlmighty/coding-gauntlet.git",
+    "author": "Jose Luis Canepa <can@can.im>",
+    "license": "MIT",
+    "dependencies": {
+        "lodash": "^4.17.19"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.159",
+        "@types/node": "^14.0.27",
+        "tsc-watch": "^4.2.9",
+        "typescript": "^3.9.7"
+    },
+    "scripts": {
+        "start": "tsc-watch --onSuccess \"node ./dist/index.js\""
+    }
+}
