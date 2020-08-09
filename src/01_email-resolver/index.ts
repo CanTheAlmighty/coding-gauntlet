@@ -1,3 +1,5 @@
+import { Terminal } from 'terminal-kit'
+import { Problem } from '../00_definition/Problem'
 
 const emailResolve = (email: string): string => {
     let [ owner, domain ] = email.split('@')
@@ -23,13 +25,20 @@ const emailMultiResolve = (emails: Array<string>): Array<string> => {
 
 // MARK: - Run
 
-const main = () => {
+const main = (tty: Terminal) => {
     const allMails = ["test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"]
     const resolve = emailMultiResolve(allMails)
 
-    console.log('From all mails: ', allMails)
-    console.log(`Only ${ resolve.length } of them receive:`, resolve)
+    tty('From all mails: ', allMails)
+    tty(`\nOnly ${ resolve.length } of them receive:`, resolve)
 }
 
+// MARK: -  Export
 
-export { main }
+const problem: Problem = {
+    title: 'Email Uniqueness',
+    description: 'Find all unique emails regardless of + or .',
+    solutions: { main }
+}
+
+export default problem
