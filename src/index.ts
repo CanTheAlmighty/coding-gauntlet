@@ -2,6 +2,8 @@
 import TerminalKit from 'terminal-kit'
 const tty = TerminalKit.terminal
 
+import { startCase } from 'lodash'
+
 import { Problem } from '00_definition/Problem'
 
 import problem01 from './01_email-resolver'
@@ -49,7 +51,7 @@ const main = async () => {
         const solution = problem.solutions[solutionSelectedKey]
         
         // Run the solution
-        tty.cyan('\nExecuting problem ').cyan.bold(problem.title).cyan(' with solution ').cyan.bold(solutionSelectedKey)
+        tty.cyan('\nExecuting problem ').cyan.bold(problem.title).cyan(' with solution ').cyan.bold(startCase(solutionSelectedKey))
         tty.cyan('\n---------------- START ----------------\n')
         solution(tty)
         tty.cyan('\n----------------- END -----------------\n')

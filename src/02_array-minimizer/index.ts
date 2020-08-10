@@ -1,5 +1,4 @@
-import { Problem } from '00_definition/Problem'
-import { Terminal } from 'terminal-kit'
+import { Problem, Solution } from '00_definition/Problem'
 
 const minimizeArray = (array: Array<number>): number => {
     let headWrite = 0
@@ -18,7 +17,7 @@ const minimizeArray = (array: Array<number>): number => {
     return headWrite
 }
 
-const main = (tty: Terminal) => {
+const main: Solution = (tty) => {
     let example = [0,0,1,1,1,2,2,3,3,4]
 
     tty(`Input: ${ example }\n`)

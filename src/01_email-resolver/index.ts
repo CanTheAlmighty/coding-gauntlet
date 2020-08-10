@@ -1,5 +1,4 @@
-import { Terminal } from 'terminal-kit'
-import { Problem } from '../00_definition/Problem'
+import { Problem, Solution } from '../00_definition/Problem'
 
 const emailResolve = (email: string): string => {
     let [ owner, domain ] = email.split('@')
@@ -25,7 +24,7 @@ const emailMultiResolve = (emails: Array<string>): Array<string> => {
 
 // MARK: - Run
 
-const main = (tty: Terminal) => {
+const main: Solution = (tty) => {
     const allMails = ["test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"]
     const resolve = emailMultiResolve(allMails)
 
