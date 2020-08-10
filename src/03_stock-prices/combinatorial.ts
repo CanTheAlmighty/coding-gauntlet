@@ -1,7 +1,10 @@
-
-import { Solution } from '../00_definition/Problem'
+// Libraries
 import { Terminal } from 'terminal-kit'
 import { concat } from 'lodash'
+
+// Common
+import { Solution } from '../00_common/Excercise'
+import { tty } from '../00_common/Terminal'
 
 /** A singular trade that generates profit */
 interface Trade {
@@ -25,7 +28,7 @@ const logTradeGroup = (group: TradeGroup, tty: Terminal) => {
     group.trades.forEach(t => logTrade(t, tty))
 }
 
-const combinatorics = (stocks: Array<number>, tty: Terminal) => {
+const combinatorial: Solution<Array<number>, number> = (stocks: Array<number>) => {
     const length = stocks.length
 
     tty('For ', stocks, '\n')
@@ -88,10 +91,8 @@ const combinatorics = (stocks: Array<number>, tty: Terminal) => {
     } while(modified)
 
     logTradeGroup(trades[bestCombinationIndex], tty)
+
+    return bestCombinationProfit
 }
 
-const main: Solution = (tty) => {
-    combinatorics([7,1,5,3,6,4], tty)
-}
-
-export { main as combinatorial }
+export { combinatorial }

@@ -1,7 +1,8 @@
-import { Solution } from '00_definition/Problem'
-import { Terminal } from 'terminal-kit'
+// Common
+import { Problem, Solution } from '../00_common/Excercise'
+import { tty } from '../00_common/Terminal'
 
-const profitMatrix = (prices: Array<number>, tty: Terminal): { matrix: Array<number>, width: number } => {
+const profitMatrix = (prices: Array<number>): { matrix: Array<number>, width: number } => {
     const profitMatrixWidth = prices.length
     let profitMatrix = Array<number>(Math.pow(profitMatrixWidth, 2))
 
@@ -31,16 +32,10 @@ const profitMatrix = (prices: Array<number>, tty: Terminal): { matrix: Array<num
     }
 }
 
-const run = (prices: Array<number>, tty: Terminal) => {
-    const matrix = profitMatrix(prices, tty)
+const dynamicProgramming = (prices: Array<number>): number => {
+    const matrix = profitMatrix(prices)
+    return 0
 }
 
-const dynamicProgramming: Solution = (tty) => {
-    run([7,1,5,3,6,4], tty)
-
-    run([1,2,3,4,5], tty)
-
-    run([7,6,4,3,1], tty)
-}
 
 export { dynamicProgramming }

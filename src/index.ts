@@ -1,27 +1,16 @@
-
-import TerminalKit from 'terminal-kit'
-const tty = TerminalKit.terminal
-
 import { startCase } from 'lodash'
 
-import { Problem } from '00_definition/Problem'
+// Common
+import { Problem, Solution } from './00_common/Excercise'
+import { tty } from './00_common/Terminal'
 
 import problem01 from './01_email-resolver'
 import problem02 from './02_array-minimizer'
 import problem03 from './03_stock-prices'
 
-const problems: Array<Problem> = [
+const problems: Array<Problem<any,any>> = [
     problem01, problem02, problem03
 ]
-
-tty.on('key', (key: string, matches: any, data: any) => {
-    switch (key) {
-        case 'CTRL_C':
-        case 'CTRL_D':
-            tty.grabInput(false)
-            process.exit()
-    }
-})
 
 const main = async () => {
     let running = true
@@ -53,7 +42,29 @@ const main = async () => {
         // Run the solution
         tty.cyan('\nExecuting problem ').cyan.bold(problem.title).cyan(' with solution ').cyan.bold(startCase(solutionSelectedKey))
         tty.cyan('\n---------------- START ----------------\n')
-        solution(tty)
+        problem.tests.forEach((test, index) => {
+            tty.cyan('<Test #').cyan.bold(index.toFixed(0)).cyan('> argument: ').yellow(test.argument, '\n')
+
+            let result: any = undefined
+            
+            try {
+                result = solution(test.argument)
+            }
+            catch (error) {
+                tty.cyan('\nResult [').red('Failure').cyan('] expected ').yellow(test.expected).cyan(', Solution crashed\n')
+                tty.cyan('Error data: ', error.message)
+                return
+            }
+
+            tty.cyan('\n<Test #').cyan.bold(index.toFixed(0)).cyan('> Result [')
+            
+            if (result === test.expected) {
+                tty.green('Success').cyan('] value is ').yellow(`${result}\n`)
+            }
+            else {
+                tty.red('Failure').cyan('] expected ').yellow(`${test.expected}`).cyan(' got ').yellow(`${result}\n`)
+            }
+        })
         tty.cyan('\n----------------- END -----------------\n')
         tty.cyan('Press ').cyan.bold('Any Key').cyan(' to go back\n')
 

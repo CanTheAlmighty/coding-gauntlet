@@ -1,4 +1,6 @@
-import { Solution } from "00_definition/Problem"
+// Common
+import { Problem, Solution } from '../00_common/Excercise'
+import { tty } from '../00_common/Terminal'
 
 const opportunity = (prices: Array<number>, operation: 'buy' | 'sell', pivot: number): number => {
     let best = {
@@ -34,8 +36,8 @@ const opportunity = (prices: Array<number>, operation: 'buy' | 'sell', pivot: nu
     return 0
 }
 
-const recursive: Solution = (tty) => {
-    opportunity([7,1,5,3,6,4], 'buy', 0)
+const recursive: Solution<Array<number>, number> = (test) => {
+    return opportunity(test, 'buy', 0)
 }
 
 export { recursive }
