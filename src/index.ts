@@ -8,8 +8,10 @@ import problem01 from './01_email-resolver'
 import problem02 from './02_array-minimizer'
 import problem03 from './03_stock-prices'
 
+import problem05 from './05_water-pooling'
+
 const problems: Array<Problem<any,any>> = [
-    problem01, problem02, problem03
+    problem01, problem02, problem03, problem05
 ]
 
 const main = async () => {
