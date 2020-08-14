@@ -16,7 +16,7 @@ const zeroCol = (matrix: Matrix, col: number) => {
 
 /** Zeroes' out a row, but if there's a zero already, it swaps it for FLAG */
 const zeroRow = (matrix: Matrix, row: number, flag: number) => {
-    const width = matrix[0].length
+    const width = matrix[row].length
     
     for (let col=0; col < width; col++) {
         if (matrix[row][col] === 0) {
@@ -33,10 +33,10 @@ const matrixIterator = (matrix: Matrix) => {
     const width  = matrix[0].length
 
     const self = {
-        forEach: (operation: (row: number, col: number) => void) => {
+        forEach: (operation: (row: number, col: number) => void | 'break') => {
             for (let row=0; row < height; row++) {
                 for (let col=0; col < width; col++) {
-                    operation(row, col)
+                    if (operation(row, col) === 'break') { break }
                 }
             }
 
@@ -54,7 +54,7 @@ const matrixIterator = (matrix: Matrix) => {
                         tty.grey(value.toFixed(0).padStart(2, ' '))
                     }
                     else if (value === flag) {
-                        tty.red(value.toFixed(0).padStart(2, ' '))
+                        tty.red('X'.padStart(2, ' '))
                     }
                     else {
                         tty.yellow(value.toFixed(0).padStart(2, ' '))
@@ -86,6 +86,7 @@ const matrixZeroer = (matrix: Matrix): Matrix => {
         if (matrix[row][col] === 0) {
             // Zero-out this entire row, and leave
             zeroRow(matrix, row, flag)
+            return 'break'
         }
     })
     .print(flag, 'Zeroed-Rows')
