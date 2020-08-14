@@ -10,8 +10,10 @@ import problem03 from './03_stock-prices'
 
 import problem05 from './05_water-pooling'
 
+import problem07 from './07_matrix_zeroer'
+
 const problems: Array<Problem<any,any>> = [
-    problem01, problem02, problem03, problem05
+    problem01, problem02, problem03, problem05, problem07
 ]
 
 const main = async () => {
@@ -60,7 +62,10 @@ const main = async () => {
 
             tty.cyan('\n<Test #').cyan.bold(index.toFixed(0)).cyan('> Result [')
             
-            if (result === test.expected) {
+            if (typeof result === 'object') {
+                tty.yellow('Unknown').cyan('] result is a complex object\n')
+            }
+            else if (result === test.expected) {
                 tty.green('Success').cyan('] value is ').yellow(`${result}\n`)
             }
             else {
