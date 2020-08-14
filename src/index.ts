@@ -7,13 +7,14 @@ import { tty } from './00_common/Terminal'
 import problem01 from './01_email-resolver'
 import problem02 from './02_array-minimizer'
 import problem03 from './03_stock-prices'
-
+import problem04 from './04_kmax'
 import problem05 from './05_water-pooling'
 
 import problem07 from './07_matrix_zeroer'
+import problem08 from './08_anagram_grouper'
 
 const problems: Array<Problem<any,any>> = [
-    problem01, problem02, problem03, problem05, problem07
+    problem01, problem02, problem03, problem04, problem05, problem07, problem08
 ]
 
 const main = async () => {
@@ -27,7 +28,7 @@ const main = async () => {
         tty.cyan('Pick the problem from the list to view its solution:')
         tty.nextLine(1)
         
-        const choice = await tty.singleColumnMenu(problems.map(p => p.title), { leftPadding: '  * ' }).promise
+        const choice = await tty.singleColumnMenu(problems.map((p,i) => `${(i+1).toFixed(0).padStart(3, ' ')}. ${p.title}`), { leftPadding: '  ' }).promise
         const problem = problems[choice.selectedIndex]
         
         const solutionKeys = Object.keys(problem.solutions)
